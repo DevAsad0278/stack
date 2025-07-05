@@ -10,8 +10,8 @@ const Team = () => {
       image: "/Asad0.jpeg",
       bio: "Skilled project manager and full-stack developer known for leading complex projects from concept to delivery with precision and a focus on quality.",
       social: {
-        linkedin: "https://www.linkedin.com/in/mrrasad0278",
-        github: "https://devasad.netlify.app/",
+        linkedin: "https://devasad.netlify.app/",
+        github: "https://github.com/DevAsad0278",
       },
     },
     {
@@ -109,6 +109,8 @@ const Team = () => {
                   <div className="absolute bottom-4 left-4 right-4 flex justify-center space-x-3">
                     <motion.a
                       href={member.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.2 }}
                       className="bg-white/20 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white hover:text-purple-600 transition-colors"
                     >
@@ -117,6 +119,8 @@ const Team = () => {
 
                     <motion.a
                       href={member.social.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.2 }}
                       className="bg-white/20 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white hover:text-purple-600 transition-colors"
                     >

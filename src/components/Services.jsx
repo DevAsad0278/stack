@@ -1,45 +1,88 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Code, Smartphone, Search, BarChart, Palette, ShoppingCart } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Code,
+  Smartphone,
+  Search,
+  BarChart,
+  Palette,
+  ShoppingCart,
+} from "lucide-react";
 
 const Services = () => {
   const services = [
     {
       icon: Code,
-      title: 'Web Development',
-      description: 'Custom websites and web applications built with modern technologies and best practices.',
-      features: ['Responsive Design', 'Performance Optimization', 'SEO Ready', 'Security First']
+      title: "Web Development",
+      description:
+        "Custom websites and web applications built with modern technologies and best practices.",
+      features: [
+        "Responsive Design",
+        "Performance Optimization",
+        "SEO Ready",
+        "Security First",
+      ],
     },
     {
       icon: Smartphone,
-      title: 'Mobile App Development',
-      description: 'Native and cross-platform mobile applications for iOS and Android.',
-      features: ['Native iOS/Android', 'Cross-platform', 'UI/UX Design', 'App Store Optimization']
+      title: "Mobile App Development",
+      description:
+        "Native and cross-platform mobile applications for iOS and Android.",
+      features: [
+        "Native iOS/Android",
+        "Cross-platform",
+        "UI/UX Design",
+        "App Store Optimization",
+      ],
     },
     {
       icon: Search,
-      title: 'Digital Marketing',
-      description: 'Comprehensive digital marketing strategies to boost your online presence.',
-      features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'PPC Advertising']
+      title: "Digital Marketing",
+      description:
+        "Comprehensive digital marketing strategies to boost your online presence.",
+      features: [
+        "SEO/SEM",
+        "Social Media",
+        "Content Marketing",
+        "PPC Advertising",
+      ],
     },
     {
       icon: BarChart,
-      title: 'Analytics & Insights',
-      description: 'Data-driven insights to optimize your digital marketing performance.',
-      features: ['Google Analytics', 'Performance Tracking', 'Conversion Optimization', 'ROI Analysis']
+      title: "Analytics & Insights",
+      description:
+        "Data-driven insights to optimize your digital marketing performance.",
+      features: [
+        "Google Analytics",
+        "Performance Tracking",
+        "Conversion Optimization",
+        "ROI Analysis",
+      ],
     },
     {
       icon: Palette,
-      title: 'UI/UX Design',
-      description: 'Beautiful, user-centered designs that convert visitors into customers.',
-      features: ['User Research', 'Wireframing', 'Prototyping', 'Visual Design']
+      title: "UI/UX Design",
+      description:
+        "Beautiful, user-centered designs that convert visitors into customers.",
+      features: [
+        "User Research",
+        "Wireframing",
+        "Prototyping",
+        "Visual Design",
+      ],
     },
     {
       icon: ShoppingCart,
-      title: 'E-commerce Solutions',
-      description: 'Complete e-commerce platforms with payment integration and inventory management.',
-      features: ['Online Store', 'Payment Gateway', 'Inventory Management', 'Order Tracking']
-    }
+      title: "E-commerce Solutions",
+      description:
+        "Complete e-commerce platforms with payment integration and inventory management.",
+      features: [
+        "Online Store",
+        "Payment Gateway",
+        "Inventory Management",
+        "Order Tracking",
+      ],
+    },
   ];
 
   return (
@@ -56,8 +99,8 @@ const Services = () => {
             Our <span className="text-purple-600">Services</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We offer a comprehensive suite of digital services to help your business 
-            succeed in the digital world.
+            We offer a comprehensive suite of digital services to help your
+            business succeed in the digital world.
           </p>
         </motion.div>
 
@@ -76,26 +119,23 @@ const Services = () => {
                 <div className="bg-purple-100 w-16 h-16 rounded-lg flex items-center justify-center mb-4">
                   <service.icon className="h-8 w-8 text-purple-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  {service.title}
+                </h3>
                 <p className="text-gray-600 mb-6">{service.description}</p>
               </div>
-              
+
               <ul className="space-y-2">
                 {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-gray-700">
+                  <li
+                    key={featureIndex}
+                    className="flex items-center text-gray-700"
+                  >
                     <div className="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
                     {feature}
                   </li>
                 ))}
               </ul>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-6 w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
-              >
-                Learn More
-              </motion.button>
             </motion.div>
           ))}
         </div>

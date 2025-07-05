@@ -1,52 +1,37 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const Technologies = () => {
   const technologies = [
     {
-      category: 'Frontend',
+      category: "Frontend",
       items: [
-        { name: 'React', color: 'bg-blue-500' },
-        { name: 'Vue.js', color: 'bg-green-500' },
-        { name: 'Angular', color: 'bg-red-500' },
-        { name: 'Next.js', color: 'bg-black' },
-        { name: 'TypeScript', color: 'bg-blue-600' },
-        { name: 'Tailwind CSS', color: 'bg-cyan-500' },
-      ]
+        { name: "React", color: "bg-blue-500" },
+        { name: "Bootstrap", color: "bg-cyan-500" },
+        { name: "Tailwind CSS", color: "bg-cyan-500" },
+      ],
     },
     {
-      category: 'Backend',
+      category: "Backend",
       items: [
-        { name: 'Node.js', color: 'bg-green-600' },
-        { name: 'Python', color: 'bg-yellow-500' },
-        { name: 'PHP', color: 'bg-purple-500' },
-        { name: 'Java', color: 'bg-orange-500' },
-        { name: 'Express.js', color: 'bg-gray-700' },
-        { name: 'Django', color: 'bg-green-700' },
-      ]
+        { name: "Node.js", color: "bg-green-600" },
+
+        { name: "Express.js", color: "bg-gray-700" },
+      ],
     },
     {
-      category: 'Database',
-      items: [
-        { name: 'MongoDB', color: 'bg-green-500' },
-        { name: 'PostgreSQL', color: 'bg-blue-700' },
-        { name: 'MySQL', color: 'bg-orange-600' },
-        { name: 'Redis', color: 'bg-red-600' },
-        { name: 'Firebase', color: 'bg-yellow-600' },
-        { name: 'Supabase', color: 'bg-green-600' },
-      ]
+      category: "Database",
+      items: [{ name: "MongoDB", color: "bg-green-500" }],
     },
     {
-      category: 'Tools & Platforms',
+      category: "Tools & Platforms",
       items: [
-        { name: 'AWS', color: 'bg-orange-500' },
-        { name: 'Docker', color: 'bg-blue-500' },
-        { name: 'Git', color: 'bg-orange-600' },
-        { name: 'Figma', color: 'bg-purple-500' },
-        { name: 'Vercel', color: 'bg-black' },
-        { name: 'Netlify', color: 'bg-teal-500' },
-      ]
-    }
+        { name: "Git", color: "bg-orange-600" },
+        { name: "Figma", color: "bg-purple-500" },
+        { name: "Vercel", color: "bg-black" },
+        { name: "Netlify", color: "bg-teal-500" },
+      ],
+    },
   ];
 
   return (
@@ -63,7 +48,7 @@ const Technologies = () => {
             Our <span className="text-purple-600">Technology Stack</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We work with cutting-edge technologies to deliver modern, scalable, 
+            We work with cutting-edge technologies to deliver modern, scalable,
             and efficient solutions for your business needs.
           </p>
         </motion.div>
@@ -92,8 +77,12 @@ const Technologies = () => {
                     whileHover={{ scale: 1.05 }}
                     className="flex items-center p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer"
                   >
-                    <div className={`w-4 h-4 rounded-full ${tech.color} mr-3`}></div>
-                    <span className="font-medium text-gray-800">{tech.name}</span>
+                    <div
+                      className={`w-4 h-4 rounded-full ${tech.color} mr-3`}
+                    ></div>
+                    <span className="font-medium text-gray-800">
+                      {tech.name}
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -113,14 +102,18 @@ const Technologies = () => {
               Always Learning, Always Growing
             </h3>
             <p className="text-lg mb-6">
-              Technology evolves rapidly, and so do we. Our team continuously learns new 
-              technologies and best practices to ensure we deliver the most modern and 
-              effective solutions for your projects.
+              Technology evolves rapidly, and so do we. Our team continuously
+              learns new technologies and best practices to ensure we deliver
+              the most modern and effective solutions for your projects.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  .scrollIntoView({ behavior: "smooth" })
+              }
               className="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               Start Your Project

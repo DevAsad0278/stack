@@ -1,10 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-600">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -40,10 +43,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="flex items-center justify-center mb-6"
-        >
-          <Sparkles className="h-6 w-6 text-purple-300 mr-2" />
-          <span className="text-purple-300 font-medium">Welcome to Stack Fellows</span>
-        </motion.div>
+        ></motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
@@ -51,10 +51,10 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
         >
-          We build stunning websites and{' '}
+          We build stunning websites and{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-white">
             boost your brand
-          </span>{' '}
+          </span>{" "}
           with digital marketing
         </motion.h1>
 
@@ -64,8 +64,8 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto"
         >
-          Transform your digital presence with cutting-edge web development and strategic 
-          digital marketing solutions that drive real results.
+          Transform your digital presence with cutting-edge web development and
+          strategic digital marketing solutions that drive real results.
         </motion.p>
 
         <motion.div
@@ -77,7 +77,11 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+            onClick={() =>
+              document
+                .getElementById("contact")
+                .scrollIntoView({ behavior: "smooth" })
+            }
             className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center group"
           >
             Get Started Today
@@ -86,7 +90,11 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
+            onClick={() =>
+              document
+                .getElementById("portfolio")
+                .scrollIntoView({ behavior: "smooth" })
+            }
             className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors"
           >
             View Our Work
