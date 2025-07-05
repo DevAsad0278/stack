@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, XCircle } from "lucide-react";
 
 // ✅ Real WhatsApp icon as SVG component
 const WhatsAppIcon = () => (
@@ -21,7 +21,7 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [toast, setToast] = useState({ show: false, type: "", message: "" });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,12 +31,40 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://localhost:5000/api/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        setFormData({ name: "", email: "", message: "" });
+        showToast(
+          "success",
+          "Thank you! Your message has been sent successfully."
+        );
+      } else {
+        const errorData = await response.json();
+        showToast("error", errorData.message || "Something went wrong.");
+        setIsSubmitting(false);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      showToast(
+        "error",
+        "An unexpected error occurred. Please try again later."
+      );
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setIsSubmitted(false), 3000);
-    }, 1500);
+    }
+  };
+
+  const showToast = (type, message) => {
+    setToast({ show: true, type, message });
+    setTimeout(() => setToast({ show: false, type: "", message: "" }), 4000);
   };
 
   const contactInfo = [
@@ -67,7 +95,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -147,19 +175,19 @@ const Contact = () => {
               </h4>
               <ul className="space-y-2">
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
                   Expert team with proven track record
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
                   Custom solutions tailored to your needs
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
                   Ongoing support and maintenance
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
                   Transparent communication throughout
                 </li>
               </ul>
@@ -256,21 +284,27 @@ const Contact = () => {
                 )}
               </motion.button>
             </form>
-
-            {isSubmitted && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-6 p-4 bg-green-100 text-green-800 rounded-lg flex items-center"
-              >
-                <CheckCircle className="h-5 w-5 mr-2" />
-                Thank you! Your message has been sent successfully. We'll get
-                back to you soon.
-              </motion.div>
-            )}
           </motion.div>
         </div>
       </div>
+
+      {toast.show && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 30 }}
+          className={`fixed bottom-6 right-6 px-5 py-4 rounded-lg shadow-lg flex items-center space-x-3 text-white ${
+            toast.type === "success" ? "bg-green-600" : "bg-red-600"
+          }`}
+        >
+          {toast.type === "success" ? (
+            <CheckCircle className="h-5 w-5" />
+          ) : (
+            <XCircle className="h-5 w-5" />
+          )}
+          <span>{toast.message}</span>
+        </motion.div>
+      )}
     </section>
   );
 };
