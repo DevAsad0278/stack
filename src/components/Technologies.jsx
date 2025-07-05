@@ -6,17 +6,24 @@ const Technologies = () => {
     {
       category: "Frontend",
       items: [
-        { name: "React", color: "bg-blue-500" },
+        { name: "React js", color: "bg-blue-500" },
         { name: "Bootstrap", color: "bg-cyan-500" },
         { name: "Tailwind CSS", color: "bg-cyan-500" },
+        { name: "daisyui", color: "bg-cyan-700" },
+        { name: "Html", color: "bg-cyan-600" },
+        { name: "CSS", color: "bg-cyan-700" },
+        { name: "framer Motion", color: "bg-cyan-900" },
+        { name: "Animations", color: "bg-cyan-800" },
       ],
     },
     {
       category: "Backend",
       items: [
         { name: "Node.js", color: "bg-green-600" },
-
         { name: "Express.js", color: "bg-gray-700" },
+        { name: "Postman", color: "bg-gray-700" },
+        { name: "Thunder Client", color: "bg-green-600" },
+        { name: "Npm", color: "bg-green-600" },
       ],
     },
     {
@@ -27,8 +34,10 @@ const Technologies = () => {
       category: "Tools & Platforms",
       items: [
         { name: "Git", color: "bg-orange-600" },
+        { name: "GitHub", color: "bg-orange-600" },
         { name: "Figma", color: "bg-purple-500" },
         { name: "Vercel", color: "bg-black" },
+        { name: "Render", color: "bg-black" },
         { name: "Netlify", color: "bg-teal-500" },
       ],
     },

@@ -36,16 +36,23 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5">
+    <div className="fixed bottom-5 right-5 z-50 w-full flex justify-end sm:justify-end">
       {isOpen ? (
-        <div className="w-80 bg-white shadow-lg rounded-lg flex flex-col">
+        <div
+          className={`
+            bg-white shadow-lg rounded-lg flex flex-col
+            w-full max-w-[400px]
+            sm:w-80
+            mx-2
+          `}
+        >
           <div className="bg-blue-500 text-white p-3 flex justify-between items-center rounded-t-lg">
             <h2 className="text-sm font-semibold">AI Chatbot</h2>
             <button onClick={() => setIsOpen(false)} className="text-white">
               ✖
             </button>
           </div>
-          <div className="h-64 overflow-y-auto border p-2 mb-2">
+          <div className="flex-1 overflow-y-auto p-2 border-b max-h-[60vh]">
             {chat.map((msg, idx) => (
               <div
                 key={idx}
@@ -66,7 +73,7 @@ const Chatbot = () => {
             ))}
             {loading && <p className="text-center text-gray-500">Typing...</p>}
           </div>
-          <div className="flex p-2 border-t">
+          <div className="flex p-2">
             <input
               type="text"
               className="flex-1 border p-1 rounded mr-2 text-sm"
@@ -88,7 +95,7 @@ const Chatbot = () => {
       ) : (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg"
+          className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg mx-2"
         >
           💬 Chat
         </button>

@@ -1,83 +1,96 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 
 const Portfolio = () => {
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState("all");
 
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Platform',
-      category: 'web',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Modern e-commerce platform with advanced features and seamless user experience.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      link: '#',
-      github: '#'
+      title: "E-commerce Platform",
+      category: "web",
+      image:
+        "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description:
+        "Modern e-commerce platform with advanced features and seamless user experience.",
+      tech: ["React", "Node.js", "MongoDB", "Stripe"],
+      link: "#",
+      github: "#",
     },
     {
       id: 2,
-      title: 'Healthcare App',
-      category: 'mobile',
-      image: 'https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Mobile healthcare app connecting patients with healthcare providers.',
-      tech: ['React Native', 'Firebase', 'Redux', 'Express'],
-      link: '#',
-      github: '#'
+      title: "Healthcare App",
+      category: "mobile",
+      image:
+        "https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description:
+        "Mobile healthcare app connecting patients with healthcare providers.",
+      tech: ["React Native", "Firebase", "Redux", "Express"],
+      link: "#",
+      github: "#",
     },
     {
       id: 3,
-      title: 'Digital Marketing Campaign',
-      category: 'marketing',
-      image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Comprehensive digital marketing campaign resulting in 300% ROI increase.',
-      tech: ['Google Ads', 'Facebook Ads', 'Analytics', 'SEO'],
-      link: '#',
-      github: '#'
+      title: "Digital Marketing Campaign",
+      category: "marketing",
+      image:
+        "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description:
+        "Comprehensive digital marketing campaign resulting in 300% ROI increase.",
+      tech: ["Google Ads", "Facebook Ads", "Analytics", "SEO"],
+      link: "#",
+      github: "#",
     },
     {
       id: 4,
-      title: 'Restaurant Management System',
-      category: 'web',
-      image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Complete restaurant management system with POS and inventory management.',
-      tech: ['Vue.js', 'Python', 'PostgreSQL', 'Docker'],
-      link: '#',
-      github: '#'
+      title: "Restaurant Management System",
+      category: "web",
+      image:
+        "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description:
+        "Complete restaurant management system with POS and inventory management.",
+      tech: ["Vue.js", "Python", "PostgreSQL", "Docker"],
+      link: "#",
+      github: "#",
     },
     {
       id: 5,
-      title: 'Fitness Tracking App',
-      category: 'mobile',
-      image: 'https://images.pexels.com/photos/3766217/pexels-photo-3766217.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Comprehensive fitness tracking app with social features and AI coaching.',
-      tech: ['Flutter', 'Firebase', 'TensorFlow', 'Cloud Functions'],
-      link: '#',
-      github: '#'
+      title: "Fitness Tracking App",
+      category: "mobile",
+      image:
+        "https://images.pexels.com/photos/3766217/pexels-photo-3766217.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description:
+        "Comprehensive fitness tracking app with social features and AI coaching.",
+      tech: ["Flutter", "Firebase", "TensorFlow", "Cloud Functions"],
+      link: "#",
+      github: "#",
     },
     {
       id: 6,
-      title: 'Brand Awareness Campaign',
-      category: 'marketing',
-      image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Multi-channel brand awareness campaign reaching 2M+ potential customers.',
-      tech: ['Social Media', 'Content Marketing', 'Influencer Marketing', 'PR'],
-      link: '#',
-      github: '#'
-    }
+      title: "Brand Awareness Campaign",
+      category: "marketing",
+      image:
+        "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=600",
+      description:
+        "Multi-channel brand awareness campaign reaching 2M+ potential customers.",
+      tech: ["Social Media", "Content Marketing", "Influencer Marketing", "PR"],
+      link: "#",
+      github: "#",
+    },
   ];
 
   const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'web', label: 'Web Development' },
-    { id: 'mobile', label: 'Mobile Apps' },
-    { id: 'marketing', label: 'Digital Marketing' }
+    { id: "all", label: "All Projects" },
+    { id: "web", label: "Web Development" },
+    { id: "mobile", label: "Mobile Apps" },
+    { id: "marketing", label: "Digital Marketing" },
   ];
 
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
+  const filteredProjects =
+    filter === "all"
+      ? projects
+      : projects.filter((project) => project.category === filter);
 
   return (
     <section id="portfolio" className="py-20 bg-gray-50">
@@ -90,10 +103,10 @@ const Portfolio = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our <span className="text-purple-600">Portfolio</span>
+            Our <span className="text-purple-600">Projects</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our recent projects and see how we've helped businesses 
+            Explore our recent projects and see how we've helped businesses
             achieve their digital goals with innovative solutions.
           </p>
         </motion.div>
@@ -114,8 +127,8 @@ const Portfolio = () => {
               whileTap={{ scale: 0.95 }}
               className={`px-6 py-3 rounded-full font-semibold transition-all ${
                 filter === category.id
-                  ? 'bg-purple-600 text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
+                  ? "bg-purple-600 text-white shadow-lg"
+                  : "bg-white text-gray-700 hover:bg-gray-100 shadow-md"
               }`}
             >
               {category.label}
@@ -136,8 +149,8 @@ const Portfolio = () => {
               className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
             >
               <div className="relative overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
@@ -160,11 +173,13 @@ const Portfolio = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  {project.title}
+                </h3>
                 <p className="text-gray-600 mb-4">{project.description}</p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, techIndex) => (
                     <span
@@ -175,7 +190,7 @@ const Portfolio = () => {
                     </span>
                   ))}
                 </div>
-                
+
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -201,13 +216,17 @@ const Portfolio = () => {
               Ready to Start Your Project?
             </h3>
             <p className="text-lg mb-6">
-              Let's discuss how we can help bring your vision to life with our 
+              Let's discuss how we can help bring your vision to life with our
               expertise in web development and digital marketing.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  .scrollIntoView({ behavior: "smooth" })
+              }
               className="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               Get Started Today
