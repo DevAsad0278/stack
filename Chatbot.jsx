@@ -19,9 +19,7 @@ const Chatbot = () => {
         "https://stack-backend-1-j3jf.onrender.com/api/chat",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: userMessage }),
         }
       );
@@ -39,20 +37,22 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999] w-[90%] max-w-[380px] mx-auto sm:mx-2">
+    <div
+      className="fixed bottom-4 right-4 z-[9999] w-[90%] max-w-[380px] mx-auto sm:mx-2"
+      style={{ pointerEvents: isOpen ? "auto" : "none" }}
+    >
       {isOpen ? (
-        <div
-          className={`
-            bg-white shadow-lg rounded-lg flex flex-col
-            w-full
-          `}
-        >
-          <div className="bg-blue-500 text-white p-3 flex justify-between items-center rounded-t-lg">
-            <h2 className="text-sm font-semibold">AI Chatbot</h2>
-            <button onClick={() => setIsOpen(false)} className="text-white">
-              ✖
+        <div className="bg-white shadow-lg rounded-lg flex flex-col w-full pointer-events-auto">
+          <div className="bg-blue-600 text-white p-3 flex justify-between items-center rounded-t-lg">
+            <h2 className="text-sm font-semibold">Stack Assistant</h2>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-white text-lg font-bold"
+            >
+              ×
             </button>
           </div>
+
           <div className="flex-1 overflow-y-auto p-2 border-b max-h-[60vh]">
             {chat.map((msg, idx) => (
               <div
@@ -62,9 +62,9 @@ const Chatbot = () => {
                 }`}
               >
                 <span
-                  className={`inline-block p-2 rounded max-w-[80%] ${
+                  className={`inline-block p-2 rounded max-w-[80%] text-sm break-words ${
                     msg.role === "user"
-                      ? "bg-blue-200 text-blue-900"
+                      ? "bg-blue-100 text-blue-900"
                       : "bg-gray-200 text-gray-900"
                   }`}
                 >
@@ -72,8 +72,11 @@ const Chatbot = () => {
                 </span>
               </div>
             ))}
-            {loading && <p className="text-center text-gray-500">Typing...</p>}
+            {loading && (
+              <p className="text-center text-gray-500 text-sm">Typing...</p>
+            )}
           </div>
+
           <div className="flex p-2">
             <input
               type="text"
@@ -86,7 +89,7 @@ const Chatbot = () => {
               }}
             />
             <button
-              className="bg-blue-500 text-white px-3 rounded text-sm flex-shrink-0"
+              className="bg-blue-600 text-white px-3 rounded text-sm flex-shrink-0"
               onClick={handleSend}
             >
               Send
@@ -96,9 +99,9 @@ const Chatbot = () => {
       ) : (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg mx-2"
+          className="bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg pointer-events-auto"
         >
-          💬 Chat
+          💬 Live Chat
         </button>
       )}
     </div>
