@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle, XCircle } from "lucide-react";
+import Chatbot from "./Chatbot";
 
 // ✅ WhatsApp icon SVG component
 const WhatsAppIcon = () => (
@@ -307,6 +308,7 @@ const Contact = () => {
           <span>{toast.message}</span>
         </motion.div>
       )}
+      <Chatbot />
     </section>
   );
 };
