@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle, XCircle } from "lucide-react";
 
-// ✅ Real WhatsApp icon as SVG component
+// ✅ WhatsApp icon SVG component
 const WhatsAppIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -32,16 +32,18 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://stack-backend-1-j3jf.onrender.com/api/messages",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
-        setIsSubmitting(false);
         setFormData({ name: "", email: "", message: "" });
         showToast(
           "success",
@@ -50,7 +52,6 @@ const Contact = () => {
       } else {
         const errorData = await response.json();
         showToast("error", errorData.message || "Something went wrong.");
-        setIsSubmitting(false);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -58,6 +59,7 @@ const Contact = () => {
         "error",
         "An unexpected error occurred. Please try again later."
       );
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -175,19 +177,19 @@ const Contact = () => {
               </h4>
               <ul className="space-y-2">
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
                   Expert team with proven track record
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
                   Custom solutions tailored to your needs
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
                   Ongoing support and maintenance
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
                   Transparent communication throughout
                 </li>
               </ul>
