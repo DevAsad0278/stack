@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle, XCircle } from "lucide-react";
-import Chatbot from "./Chatbot";
 
-// ✅ WhatsApp icon SVG component
+// ✅ Real WhatsApp icon as SVG component
 const WhatsAppIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -33,18 +32,16 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        "https://stack-backend-1-j3jf.onrender.com/api/messages",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("http://localhost:5000/api/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
+        setIsSubmitting(false);
         setFormData({ name: "", email: "", message: "" });
         showToast(
           "success",
@@ -53,6 +50,7 @@ const Contact = () => {
       } else {
         const errorData = await response.json();
         showToast("error", errorData.message || "Something went wrong.");
+        setIsSubmitting(false);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -60,7 +58,6 @@ const Contact = () => {
         "error",
         "An unexpected error occurred. Please try again later."
       );
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -125,47 +122,6 @@ const Contact = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Let's Connect
-              </h3>
-              <p className="text-gray-600 text-lg mb-8">
-                Whether you need a new website, mobile app, or digital marketing
-                strategy, we're here to help. Get in touch and let's discuss how
-                we can bring your vision to life.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <div className="bg-purple-100 p-3 rounded-lg mr-4">
-                    <info.icon />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">
-                      {info.title}
-                    </h4>
-                    <a
-                      href={info.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-purple-600 transition-colors"
-                    >
-                      {info.value}
-                    </a>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -178,19 +134,19 @@ const Contact = () => {
               </h4>
               <ul className="space-y-2">
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
                   Expert team with proven track record
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
                   Custom solutions tailored to your needs
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
                   Ongoing support and maintenance
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />
+                  <CheckCircle className="h-5 w-5 mr-2 text-purple-200" />{" "}
                   Transparent communication throughout
                 </li>
               </ul>
@@ -308,7 +264,6 @@ const Contact = () => {
           <span>{toast.message}</span>
         </motion.div>
       )}
-      <Chatbot />
     </section>
   );
 };

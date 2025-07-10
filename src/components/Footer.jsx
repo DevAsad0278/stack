@@ -32,12 +32,12 @@ const Footer = () => {
       { name: "Contact", href: "#contact" },
     ],
     resources: [
-      { name: "Case Studies", href: "#portfolio" },
-      { name: "Testimonials", href: "#" },
-      { name: "FAQ", href: "#" },
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
-      { name: "Support", href: "#" },
+      { name: "Case Studies", href: "#case-studies" },
+      { name: "Testimonials", href: "#Testimonials" },
+      { name: "FAQ", href: "#FAQ" },
+      { name: "Privacy Policy", href: "#privacy-policy" },
+      { name: "Terms of Service", href: "#TermsOfService" },
+      { name: "Support", href: "#Support" },
     ],
   };
 
@@ -82,15 +82,15 @@ const Footer = () => {
               <div className="space-y-2">
                 <div className="flex items-center text-gray-400">
                   <Mail className="h-4 w-4 mr-2" />
-                  <span>stackfellows@gmail.com</span>
+                  <span>stackfellows684@gmail.com</span>
                 </div>
                 <div className="flex items-center text-gray-400">
                   <Phone className="h-4 w-4 mr-2" />
-                  <span>+92 303 0278190</span>
+                  <span>+92 309 1499394</span>
                 </div>
                 <div className="flex items-center text-gray-400">
                   <MapPin className="h-4 w-4 mr-2" />
-                  <span>Johar Town Lahore</span>
+                  <span>Johar Town, Lahore</span>
                 </div>
               </div>
             </motion.div>
