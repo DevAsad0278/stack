@@ -59,17 +59,17 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Main Footer Content */}
         <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8">
             {/* Company Info */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="space-y-4"
+              className="space-y-4 text-center sm:text-left"
             >
               <div className="flex items-center">
                 <Code2 className="h-8 w-8 text-purple-400 mr-2" />
@@ -102,8 +102,10 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-semibold mb-4">Services</h3>
-              <ul className="space-y-2">
+              <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
+                Services
+              </h3>
+              <ul className="space-y-2 w-full">
                 {footerLinks.services.map((link, index) => (
                   <li key={index}>
                     <button
@@ -124,8 +126,10 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-semibold mb-4">Company</h3>
-              <ul className="space-y-2">
+              <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
+                Company
+              </h3>
+              <ul className="space-y-2 w-full">
                 {footerLinks.company.map((link, index) => (
                   <li key={index}>
                     <button
@@ -146,8 +150,10 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2">
+              <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
+                Resources
+              </h3>
+              <ul className="space-y-2 w-full">
                 {footerLinks.resources.map((link, index) => (
                   <li key={index}>
                     <button
@@ -177,16 +183,16 @@ const Footer = () => {
               Subscribe to our newsletter for the latest updates on web
               development trends and digital marketing insights.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto w-full">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:ring-2 focus:ring-purple-500 focus:border-transparent w-full min-w-0"
               />
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+                className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors w-full sm:w-auto"
               >
                 Subscribe
               </motion.button>
@@ -196,7 +202,7 @@ const Footer = () => {
 
         {/* Bottom Footer */}
         <div className="border-t border-gray-800 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full px-2">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
