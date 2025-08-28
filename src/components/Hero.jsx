@@ -1,8 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 
 const Hero = () => {
+  const navigate = useNavigate(); // Initialize the hook
+
+  const handleClientAgreementClick = () => {
+    // Use the navigate function to go to the specified route
+    navigate("/ClientAgreement");
+  };
+
   return (
     <section
       id="home"
@@ -77,14 +85,10 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() =>
-              document
-                .getElementById("contact")
-                .scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={handleClientAgreementClick} // Call the new handler
             className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center group"
           >
-            Get Started Today
+            Client Agreement
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </motion.button>
           <motion.button

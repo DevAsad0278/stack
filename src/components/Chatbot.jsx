@@ -1,109 +1,121 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { Send, Bot, User, Loader } from "lucide-react";
 
 const Chatbot = () => {
-  const [userMessage, setUserMessage] = useState("");
-  const [chat, setChat] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      role: "bot",
+      text: "Hello! How can I help you today?",
+    },
+  ]);
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
-  const handleSend = async () => {
-    if (!userMessage.trim()) return;
+  const handleSendMessage = async () => {
+    if (input.trim() === "") return;
 
-    const newChat = [...chat, { role: "user", content: userMessage }];
-    setChat(newChat);
-    setUserMessage("");
+    const userMessage = { role: "user", text: input };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
     setLoading(true);
+    setInput("");
 
     try {
-      const res = await fetch(
-        "https://stack-backend-1-j3jf.onrender.com/api/chat",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userMessage }),
-        }
-      );
+      const chatHistory = messages.map((msg) => ({
+        role: msg.role === "bot" ? "model" : "user",
+        parts: [{ text: msg.text }],
+      }));
 
-      const data = await res.json();
-      setChat([...newChat, { role: "assistant", content: data.reply }]);
+      // API URL ko update kiya gaya hai
+      const response = await axios.post("http://localhost:5000/api/chat", {
+        history: chatHistory,
+        message: input,
+      });
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { role: "bot", text: response.data.text },
+      ]);
     } catch (error) {
-      setChat([
-        ...newChat,
-        { role: "assistant", content: "⚠️ Sorry, something went wrong." },
+      console.error("Failed to fetch from chatbot API:", error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          role: "bot",
+          text: "Sorry, something went wrong. Please try again later.",
+        },
       ]);
     } finally {
       setLoading(false);
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
   return (
-    <div
-      className="fixed bottom-4 right-4 z-[9999] w-[90%] max-w-[380px] mx-auto sm:mx-2"
-      style={{ pointerEvents: isOpen ? "auto" : "none" }}
-    >
-      {isOpen ? (
-        <div className="bg-white shadow-lg rounded-lg flex flex-col w-full pointer-events-auto">
-          <div className="bg-blue-600 text-white p-3 flex justify-between items-center rounded-t-lg">
-            <h2 className="text-sm font-semibold">Stack Assistant</h2>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white text-lg font-bold"
-            >
-              ×
-            </button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-2 border-b max-h-[60vh]">
-            {chat.map((msg, idx) => (
-              <div
-                key={idx}
-                className={`mb-2 ${
-                  msg.role === "user" ? "text-right" : "text-left"
-                }`}
-              >
-                <span
-                  className={`inline-block p-2 rounded max-w-[80%] text-sm break-words ${
-                    msg.role === "user"
-                      ? "bg-blue-100 text-blue-900"
-                      : "bg-gray-200 text-gray-900"
-                  }`}
-                >
-                  {msg.content}
-                </span>
+    <div className="flex flex-col h-[500px] w-full max-w-lg mx-auto bg-gray-100 rounded-lg shadow-lg overflow-hidden border border-gray-300">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`flex items-start gap-3 ${
+              msg.role === "user" ? "justify-end" : "justify-start"
+            }`}
+          >
+            {msg.role === "bot" ? (
+              <div className="p-2 rounded-full bg-blue-500 text-white">
+                <Bot size={20} />
               </div>
-            ))}
-            {loading && (
-              <p className="text-center text-gray-500 text-sm">Typing...</p>
+            ) : (
+              <div className="p-2 rounded-full bg-gray-500 text-white">
+                <User size={20} />
+              </div>
             )}
-          </div>
-
-          <div className="flex p-2">
-            <input
-              type="text"
-              className="flex-1 min-w-0 border p-1 rounded mr-2 text-sm"
-              placeholder="Type..."
-              value={userMessage}
-              onChange={(e) => setUserMessage(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleSend();
-              }}
-            />
-            <button
-              className="bg-blue-600 text-white px-3 rounded text-sm flex-shrink-0"
-              onClick={handleSend}
+            <div
+              className={`p-3 rounded-xl max-w-[75%] ${
+                msg.role === "user"
+                  ? "bg-purple-600 text-white"
+                  : "bg-white text-gray-800"
+              }`}
             >
-              Send
-            </button>
+              {msg.text}
+            </div>
           </div>
-        </div>
-      ) : (
+        ))}
+        {loading && (
+          <div className="flex items-start gap-3 justify-start">
+            <div className="p-2 rounded-full bg-blue-500 text-white">
+              <Bot size={20} />
+            </div>
+            <div className="p-3 rounded-xl max-w-[75%] bg-white text-gray-800 flex items-center gap-2">
+              <Loader size={20} className="animate-spin" /> Thinking...
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="p-4 bg-white border-t border-gray-300 flex items-center">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Type your message..."
+          className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
         <button
-          onClick={() => setIsOpen(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg pointer-events-auto"
+          onClick={handleSendMessage}
+          disabled={loading}
+          className="ml-2 p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          💬 Live Chat
+          <Send size={20} />
         </button>
-      )}
+      </div>
     </div>
   );
 };

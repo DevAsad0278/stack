@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle, XCircle } from "lucide-react";
+import Support from "./Pages/Support";
 
 // ✅ Real WhatsApp icon as SVG component
 const WhatsAppIcon = () => (
@@ -264,6 +265,7 @@ const Contact = () => {
           <span>{toast.message}</span>
         </motion.div>
       )}
+      <Support />
     </section>
   );
 };

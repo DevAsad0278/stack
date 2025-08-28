@@ -8,26 +8,13 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: "E-commerce Platform",
+      title: "Follower Cart",
       category: "web",
-      image:
-        "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: "/follwercart.jpeg",
       description:
-        "Modern e-commerce platform with advanced features and seamless user experience.",
+        "An e-commerce site with complete functionality for items and a seamless user experience.",
       tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      link: "#",
-      github: "#",
-    },
-    {
-      id: 2,
-      title: "Healthcare App",
-      category: "mobile",
-      image:
-        "https://images.pexels.com/photos/3845810/pexels-photo-3845810.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description:
-        "Mobile healthcare app connecting patients with healthcare providers.",
-      tech: ["React Native", "Firebase", "Redux", "Express"],
-      link: "#",
+      link: "https://followercarts.com",
       github: "#",
     },
     {
@@ -44,26 +31,13 @@ const Portfolio = () => {
     },
     {
       id: 4,
-      title: "Restaurant Management System",
+      title: "EmpowerUp",
       category: "web",
-      image:
-        "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: "/empor.jpeg",
       description:
-        "Complete restaurant management system with POS and inventory management.",
+        "A website similar to 'Living Forever', designed to provide powerful and lasting solutions.",
       tech: ["Vue.js", "Python", "PostgreSQL", "Docker"],
-      link: "#",
-      github: "#",
-    },
-    {
-      id: 5,
-      title: "Fitness Tracking App",
-      category: "mobile",
-      image:
-        "https://images.pexels.com/photos/3766217/pexels-photo-3766217.jpeg?auto=compress&cs=tinysrgb&w=600",
-      description:
-        "Comprehensive fitness tracking app with social features and AI coaching.",
-      tech: ["Flutter", "Firebase", "TensorFlow", "Cloud Functions"],
-      link: "#",
+      link: "https://empowerup.com",
       github: "#",
     },
     {
@@ -83,7 +57,6 @@ const Portfolio = () => {
   const categories = [
     { id: "all", label: "All Projects" },
     { id: "web", label: "Web Development" },
-    { id: "mobile", label: "Mobile Apps" },
     { id: "marketing", label: "Digital Marketing" },
   ];
 

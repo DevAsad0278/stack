@@ -1,13 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Target, Users, Award, TrendingUp } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Target, Users, Award, TrendingUp } from "lucide-react";
 
 const About = () => {
   const stats = [
-    { icon: Users, value: '100+', label: 'Happy Clients' },
-    { icon: Award, value: '250+', label: 'Projects Completed' },
-    { icon: TrendingUp, value: '5+', label: 'Years Experience' },
-    { icon: Target, value: '99%', label: 'Success Rate' },
+    { icon: Users, value: "4+", label: "Happy Clients" },
+    { icon: Award, value: "3+", label: "Projects Completed" },
+    { icon: TrendingUp, value: "1+", label: "Years Experience" },
+    { icon: Target, value: "99%", label: "Success Rate" },
   ];
 
   return (
@@ -24,8 +24,8 @@ const About = () => {
             About <span className="text-purple-600">Stack Fellows</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We are a passionate team of developers and digital marketing experts dedicated to 
-            helping businesses thrive in the digital landscape.
+            We are a passionate team of developers and digital marketing experts
+            dedicated to helping businesses thrive in the digital landscape.
           </p>
         </motion.div>
 
@@ -41,13 +41,15 @@ const About = () => {
               Transforming Ideas Into Digital Success
             </h3>
             <p className="text-gray-600 text-lg">
-              At Stack Fellows, we believe that every business deserves a powerful digital presence. 
-              Our team combines technical expertise with creative vision to deliver solutions that 
-              not only look great but also drive measurable results.
+              At Stack Fellows, we believe that every business deserves a
+              powerful digital presence. Our team combines technical expertise
+              with creative vision to deliver solutions that not only look great
+              but also drive measurable results.
             </p>
             <p className="text-gray-600 text-lg">
-              From custom web development to comprehensive digital marketing strategies, we partner 
-              with you to achieve your business goals and exceed your expectations.
+              From custom web development to comprehensive digital marketing
+              strategies, we partner with you to achieve your business goals and
+              exceed your expectations.
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="bg-purple-100 text-purple-600 px-4 py-2 rounded-full font-medium">
@@ -72,8 +74,9 @@ const About = () => {
             <div className="bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl p-8 text-white">
               <h4 className="text-2xl font-bold mb-6">Our Mission</h4>
               <p className="text-lg mb-6">
-                To empower businesses with innovative digital solutions that drive growth, 
-                enhance user experience, and create lasting value in the digital economy.
+                To empower businesses with innovative digital solutions that
+                drive growth, enhance user experience, and create lasting value
+                in the digital economy.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
@@ -107,7 +110,9 @@ const About = () => {
             >
               <div className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <stat.icon className="h-8 w-8 text-purple-600 mx-auto mb-4" />
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">
+                  {stat.value}
+                </div>
                 <div className="text-gray-600">{stat.label}</div>
               </div>
             </motion.div>

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Lock, Eye, FileText, Clock, Mail } from "lucide-react";
 
-const PrivacyPolicy = () => {
+const PrivacyPolicys = () => {
   const sections = [
     {
       icon: <FileText className="w-6 h-6" />,
@@ -200,4 +200,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default PrivacyPolicys;

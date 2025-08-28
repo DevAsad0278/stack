@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Import Link, useNavigate, and useLocation
 import {
   Code2,
   Mail,
@@ -13,6 +14,8 @@ import {
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const footerLinks = {
     services: [
@@ -31,14 +34,6 @@ const Footer = () => {
       { name: "Careers", href: "#" },
       { name: "Contact", href: "#contact" },
     ],
-    resources: [
-      { name: "Case Studies", href: "#case-studies" },
-      { name: "Testimonials", href: "#Testimonials" },
-      { name: "FAQ", href: "#FAQ" },
-      { name: "Privacy Policy", href: "#privacy-policy" },
-      { name: "Terms of Service", href: "#TermsOfService" },
-      { name: "Support", href: "#Support" },
-    ],
   };
 
   const socialLinks = [
@@ -48,8 +43,12 @@ const Footer = () => {
     { icon: Github, href: "#", label: "GitHub" },
   ];
 
-  const scrollToSection = (href) => {
-    if (href.startsWith("#")) {
+  const handleScrollToSection = (href) => {
+    if (location.pathname !== "/") {
+      // If not on the homepage, navigate to the homepage with the hash
+      navigate(`/${href}`);
+    } else {
+      // If on the homepage, just scroll
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -57,12 +56,25 @@ const Footer = () => {
     }
   };
 
+  // Add an effect to handle scrolling when the page loads with a hash
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Scroll to the top of the page on route change without a hash
+      window.scrollTo(0, 0);
+    }
+  }, [location]); // Rerun the effect when the location object changes
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Main Footer Content */}
         <div className="py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
             {/* Company Info */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -71,24 +83,27 @@ const Footer = () => {
               viewport={{ once: true }}
               className="space-y-4 text-center sm:text-left"
             >
-              <div className="flex items-center">
+              <Link
+                to="/"
+                className="flex items-center justify-center sm:justify-start"
+              >
                 <Code2 className="h-8 w-8 text-purple-400 mr-2" />
                 <span className="text-2xl font-bold">Stack Fellows</span>
-              </div>
+              </Link>
               <p className="text-gray-400">
                 We build stunning websites and boost your brand with digital
                 marketing. Your success is our mission.
               </p>
               <div className="space-y-2">
-                <div className="flex items-center text-gray-400">
+                <div className="flex items-center justify-center sm:justify-start text-gray-400">
                   <Mail className="h-4 w-4 mr-2" />
                   <span>stackfellows684@gmail.com</span>
                 </div>
-                <div className="flex items-center text-gray-400">
+                <div className="flex items-center justify-center sm:justify-start text-gray-400">
                   <Phone className="h-4 w-4 mr-2" />
                   <span>+92 309 1499394</span>
                 </div>
-                <div className="flex items-center text-gray-400">
+                <div className="flex items-center justify-center sm:justify-start text-gray-400">
                   <MapPin className="h-4 w-4 mr-2" />
                   <span>Johar Town, Lahore</span>
                 </div>
@@ -105,11 +120,11 @@ const Footer = () => {
               <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
                 Services
               </h3>
-              <ul className="space-y-2 w-full">
+              <ul className="space-y-2 w-full text-center sm:text-left">
                 {footerLinks.services.map((link, index) => (
                   <li key={index}>
                     <button
-                      onClick={() => scrollToSection(link.href)}
+                      onClick={() => handleScrollToSection(link.href)}
                       className="text-gray-400 hover:text-white transition-colors"
                     >
                       {link.name}
@@ -129,35 +144,11 @@ const Footer = () => {
               <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
                 Company
               </h3>
-              <ul className="space-y-2 w-full">
+              <ul className="space-y-2 w-full text-center sm:text-left">
                 {footerLinks.company.map((link, index) => (
                   <li key={index}>
                     <button
-                      onClick={() => scrollToSection(link.href)}
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Resources */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
-                Resources
-              </h3>
-              <ul className="space-y-2 w-full">
-                {footerLinks.resources.map((link, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => scrollToSection(link.href)}
+                      onClick={() => handleScrollToSection(link.href)}
                       className="text-gray-400 hover:text-white transition-colors"
                     >
                       {link.name}
@@ -200,7 +191,7 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        {/* Bottom Footer */}
+        {/* Bottom Footer with new links */}
         <div className="border-t border-gray-800 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 w-full px-2">
             <motion.div
@@ -208,7 +199,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-gray-400 mb-4 md:mb-0"
+              className="text-gray-400 mb-4 md:mb-0 text-center md:text-left"
             >
               © {currentYear} Stack Fellows. All rights reserved.
             </motion.div>
@@ -218,7 +209,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="flex space-x-4"
+              className="flex space-x-4 mb-4 md:mb-0"
             >
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -231,6 +222,31 @@ const Footer = () => {
                   <social.icon className="h-5 w-5" />
                 </motion.a>
               ))}
+            </motion.div>
+
+            {/* New links section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 text-center text-gray-400"
+            >
+              <Link
+                to="/PrivacyPolicy"
+                className="hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link to="/FAQ" className="hover:text-white transition-colors">
+                Frequently Asked Questions
+              </Link>
+              <Link
+                to="/TermsOfService"
+                className="hover:text-white transition-colors"
+              >
+                Terms of Service
+              </Link>
             </motion.div>
           </div>
         </div>

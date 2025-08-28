@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, Code2 } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "services", label: "Services" },
-    { id: "technologies", label: "Technologies" },
-    { id: "team", label: "Team" },
-    { id: "Projects", label: "Projects" },
-    { id: "contact", label: "Contact" },
+    { id: "home", label: "Home", href: "/" },
+    { id: "about", label: "About", href: "/#about" },
+    { id: "services", label: "Services", href: "/#services" },
+    { id: "technologies", label: "Technologies", href: "/#technologies" },
+    { id: "team", label: "Team", href: "/#team" },
+    { id: "projects", label: "Projects", href: "/#portfolio" },
+    // 'href' ko '/login' par update kiya
   ];
 
   useEffect(() => {
@@ -36,15 +39,27 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (location.pathname === "/") {
+      window.addEventListener("scroll", handleScroll);
+    } else {
+      window.removeEventListener("scroll", handleScroll);
+    }
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
+
+  const handleNavLinkClick = (href, sectionId) => {
+    setIsOpen(false);
+    // Homepage par hain toh scroll kare, otherwise navigate kare
+    if (location.pathname !== "/" && href.startsWith("/")) {
+      navigate(href);
+    } else if (href.startsWith("#")) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(href);
     }
   };
 
@@ -52,17 +67,17 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
-      }`}
+      className="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Code2 className="h-8 w-8 text-purple-600 mr-2" />
-            <span className="text-2xl font-bold text-purple-600">
-              Stack Fellows
-            </span>
+            <Link to="/" className="flex items-center">
+              <Code2 className="h-8 w-8 text-purple-600 mr-2" />
+              <span className="text-2xl font-bold text-purple-600">
+                Stack Fellows
+              </span>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
@@ -71,13 +86,11 @@ const Navbar = () => {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavLinkClick(item.href, item.id)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    activeSection === item.id
+                    activeSection === item.id && location.pathname === "/"
                       ? "text-purple-600 bg-purple-50"
-                      : scrolled
-                      ? "text-gray-700 hover:text-purple-600"
-                      : "text-white hover:text-purple-200"
+                      : "text-gray-700 hover:text-purple-600"
                   }`}
                 >
                   {item.label}
@@ -90,9 +103,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-md ${
-                scrolled ? "text-gray-700" : "text-white"
-              }`}
+              className="p-2 rounded-md text-gray-700"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -112,9 +123,9 @@ const Navbar = () => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavLinkClick(item.href, item.id)}
                 className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  activeSection === item.id
+                  activeSection === item.id && location.pathname === "/"
                     ? "text-purple-600 bg-purple-50"
                     : "text-gray-700 hover:text-purple-600"
                 }`}
